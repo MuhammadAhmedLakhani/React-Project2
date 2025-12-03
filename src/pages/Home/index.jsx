@@ -5,9 +5,14 @@ import TEXTCOLOR from '../../assets/text-color.svg';
 import TEXTGREY from '../../assets/text-grey.svg';
 import FILECOLOR from '../../assets/file-color.svg';
 import FILEGREY from '../../assets/file-grey.svg';
+import { useState } from "react";
 
 
 function HomePage() {
+
+    let [type,settype] = useState("text")
+
+
     return (
         <div className="container">
             <div className="header-bar">
@@ -30,26 +35,31 @@ function HomePage() {
 
                 <div className="card-sidebar">
 
-                    <div >
-                        <img src={TEXTCOLOR} alt="" />                        
+                    <div onClick={ ()=>settype("text")} >
+                        <img   src={type === "text" ? TEXTCOLOR :TEXTGREY } alt="" />                        
                     </div>
                      
-                    <div >
-                        <img src={FILEGREY} alt="" />                        
+                    <div onClick={ ()=>settype("file")} >
+                        <img src={type === "file" ? FILECOLOR : FILEGREY } alt="" />                        
                     </div>
                      
 
                 </div>
 
                 <div className="card-container">
-                    <div className="text-section">
+                    { type === "text" ? 
+
+                        
+                        <div className="text-section">
                         <h1>TEXT</h1>
                     </div>
+                    :
                     <div className="file-section">
                         <h1>FILES</h1>
 
                     </div>
 
+                    }
                 </div>
 
 
