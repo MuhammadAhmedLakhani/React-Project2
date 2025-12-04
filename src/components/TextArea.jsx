@@ -15,7 +15,7 @@ function TextArea(){
         textareaRef.current.style.height = "24px"
 
         textareaRef.current.style.height = textareaRef.current.scrollHeight + 12 + "px"
-
+        
 
     }
 

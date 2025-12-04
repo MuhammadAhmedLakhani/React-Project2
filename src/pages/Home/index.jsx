@@ -8,11 +8,12 @@ import TEXTGREY from '../../assets/text-grey.svg';
 import FILECOLOR from '../../assets/file-color.svg';
 import FILEGREY from '../../assets/file-grey.svg';
 import { useState } from "react";
+import Themebutton from "../../components/Button.jsx";
 
 
 function HomePage() {
 
-    let [type,settype] = useState("text");
+    let [type, settype] = useState("text");
 
 
 
@@ -38,33 +39,38 @@ function HomePage() {
 
                 <div className="card-sidebar">
 
-                    <div onClick={ ()=>{settype("text")}} className={type === "text"? "activate-text": ""}  >
-                        <img   src={type === "text" ? TEXTCOLOR :TEXTGREY } alt="" />                         
+                    <div onClick={() => { settype("text") }} className={type === "text" ? "activate-text" : ""}  >
+                        <img src={type === "text" ? TEXTCOLOR : TEXTGREY} alt="" />
                     </div>
-                     
-                    <div onClick={ ()=>{settype("file")}}
-                    className={type === "file" ? "activate-file": "" } >
-                        <img src={type === "file" ? FILECOLOR : FILEGREY } alt="" />                        
+
+                    <div onClick={() => { settype("file") }}
+                        className={type === "file" ? "activate-file" : ""} >
+                        <img src={type === "file" ? FILECOLOR : FILEGREY} alt="" />
                     </div>
-                     
+
 
                 </div>
 
                 <div className="card-container">
-                    { type === "text" ? 
+                    {type === "text" ?
 
-                        
+
                         <div className="text-section">
-                        <h1>Text</h1>
-                         <TextArea  />
-                    </div>
+                            <h1>Text</h1>
+                            <div className="resizeSection">
+                            <TextArea />
+                            </div>
+                            <div>
+                                <Themebutton disabled = {true}  title={"Save"}/>
+                            </div>
+                        </div>
 
 
-                    :
-                    <div className="file-section">
-                        <h1>FILES</h1>
+                        :
+                        <div className="file-section">
+                            <h1>Files</h1>
 
-                    </div>
+                        </div>
 
                     }
                 </div>
