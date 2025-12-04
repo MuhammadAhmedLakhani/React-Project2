@@ -9,6 +9,7 @@ import FILECOLOR from '../../assets/file-color.svg';
 import FILEGREY from '../../assets/file-grey.svg';
 import { useState } from "react";
 import Themebutton from "../../components/Button.jsx";
+import Dropzone from "../../components/Drop.jsx"
 
 
 function HomePage() {
@@ -75,6 +76,7 @@ function HomePage() {
                         <div className="file-section">
                             <h1>Files</h1>
 
+                            <Dropzone/>
                         </div>
 
                     }

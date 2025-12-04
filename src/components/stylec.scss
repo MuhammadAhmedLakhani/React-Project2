@@ -55,3 +55,42 @@ $color-dark-primary: #745dff;
     }
 
 }
+
+
+
+
+
+//file section 
+
+.drop-zone {
+    width: 100%;
+    height: 100%;
+    border: 1.5px dashed rgba(155, 155, 155,0.5);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    div{
+        color: rgba(155, 155, 155,0.5);
+        width: 50%;
+        text-align: center;
+        line-height: 30px;
+
+        span{
+            color: $color-dark-primary;
+        }
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
