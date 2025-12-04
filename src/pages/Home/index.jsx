@@ -1,5 +1,7 @@
 import logo from "../../assets/logo.svg"
 import "./CSS/style.scss";
+import TextArea from "../../components/TextArea.jsx"
+
 
 import TEXTCOLOR from '../../assets/text-color.svg';
 import TEXTGREY from '../../assets/text-grey.svg';
@@ -10,7 +12,8 @@ import { useState } from "react";
 
 function HomePage() {
 
-    let [type,settype] = useState("text")
+    let [type,settype] = useState("text");
+
 
 
     return (
@@ -35,11 +38,12 @@ function HomePage() {
 
                 <div className="card-sidebar">
 
-                    <div onClick={ ()=>settype("text")} >
-                        <img   src={type === "text" ? TEXTCOLOR :TEXTGREY } alt="" />                        
+                    <div onClick={ ()=>{settype("text")}} className={type === "text"? "activate-text": ""}  >
+                        <img   src={type === "text" ? TEXTCOLOR :TEXTGREY } alt="" />                         
                     </div>
                      
-                    <div onClick={ ()=>settype("file")} >
+                    <div onClick={ ()=>{settype("file")}}
+                    className={type === "file" ? "activate-file": "" } >
                         <img src={type === "file" ? FILECOLOR : FILEGREY } alt="" />                        
                     </div>
                      
@@ -51,8 +55,11 @@ function HomePage() {
 
                         
                         <div className="text-section">
-                        <h1>TEXT</h1>
+                        <h1>Text</h1>
+                         <TextArea  />
                     </div>
+
+
                     :
                     <div className="file-section">
                         <h1>FILES</h1>
