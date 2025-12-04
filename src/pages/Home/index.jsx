@@ -10,9 +10,10 @@ import FILEGREY from '../../assets/file-grey.svg';
 import { useState } from "react";
 import Themebutton from "../../components/Button.jsx";
 import Dropzone from "../../components/Drop.jsx"
-
+import FileList from  "../../components/FileList.jsx"
 
 function HomePage() {
+
 
     let [type, settype] = useState("text");
     let [textValue, setTextValue] = useState("");
@@ -76,7 +77,18 @@ function HomePage() {
                         <div className="file-section">
                             <h1>Files</h1>
 
-                            <Dropzone/>
+
+                            {/* <Dropzone textElement ={
+
+                                <> Drag and drop any files up to 2 files, 5Mbs each or  <span> Browse Upgrade </span> to get more space
+                                </>
+                                
+                            } /> */}
+
+                            <FileList />
+
+
+
                         </div>
 
                     }

@@ -2,7 +2,7 @@ import React, { useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
 import "./stylec.scss"
 
-function Dropzone() {
+function Dropzone({textElement}) {
     const onDrop = acceptedFiles => {
 
         // Do something with the files
@@ -16,8 +16,7 @@ function Dropzone() {
             <input {...getInputProps()} />
 
             <div>
-                Drag and drop any files up to 2 files, 5Mbs each or<span>Browse Upgrade </span> to get more space
-
+                 {textElement}
             </div>
 
 
