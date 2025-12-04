@@ -14,10 +14,14 @@ import Themebutton from "../../components/Button.jsx";
 function HomePage() {
 
     let [type, settype] = useState("text");
+    let [textValue, setTextValue] = useState("");
 
 
 
     return (
+
+
+
         <div className="container">
             <div className="header-bar">
                 <div className="logo">
@@ -58,10 +62,10 @@ function HomePage() {
                         <div className="text-section">
                             <h1>Text</h1>
                             <div className="resizeSection">
-                            <TextArea />
+                            <TextArea value = {textValue} onChange = {(e)=> setTextValue(e.target.value)}  />
                             </div>
                             <div>
-                                <Themebutton disabled = {true}  title={"Save"}/>
+                                <Themebutton disabled = {!textValue}  title={"Save"}/>
                             </div>
                         </div>
 
