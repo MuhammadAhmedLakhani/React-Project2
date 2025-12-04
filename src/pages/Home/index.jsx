@@ -58,17 +58,18 @@ function HomePage() {
                 <div className="card-container">
                     {type === "text" ?
 
-
+                        
                         <div className="text-section">
                             <h1>Text</h1>
                             <div className="resizeSection">
                             <TextArea value = {textValue} onChange = {(e)=> setTextValue(e.target.value)}  />
                             </div>
-                            <div>
+                            <div className="theme-btn-section">
+                                <span>Clear</span>
                                 <Themebutton disabled = {!textValue}  title={"Save"}/>
                             </div>
                         </div>
-
+                        
 
                         :
                         <div className="file-section">

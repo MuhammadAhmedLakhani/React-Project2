@@ -92,6 +92,38 @@ body {
         }
     }
 
+    .text-section {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+
+
+        .resizeSection {
+            flex: 1;
+        }
+
+
+        .theme-btn-section {
+            padding: 15px 0;
+            text-align: right;
+            display: flex;
+            flex-direction: row;
+            justify-content: end;
+            align-items: center;
+
+
+            span{
+                margin-right: 50px;
+                cursor: pointer;
+            }
+        }
+
+    }
+
+
+
+
 }
 
 .activate-text {
@@ -99,6 +131,6 @@ body {
 }
 
 .activate-file {
-        background-color: $white;
+    background-color: $white;
 
 }
