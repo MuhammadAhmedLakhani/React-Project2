@@ -22,12 +22,17 @@ function HomePage() {
     let [type, settype] = useState("text");
     let [textValue, setTextValue] = useState("");
 
+    let[files,setFiles] = useState([])
+
  const onDrop = acceptedFiles => {
 
         // Do something with the files
         console.log("Aceepted Files", acceptedFiles)
 
+        setFiles([...files,acceptedFiles])
+
     }
+
 
     return (
 
@@ -100,9 +105,14 @@ function HomePage() {
                                 </div>
 
                             </div>
-
-
-                            <Dropzone 
+                            
+                               {    files.length?
+                                
+                                   
+                                   <FileList files = {files} onDrop={onDrop} />
+                                   
+                                   :
+                                <  Dropzone 
                             
                             onDrop={onDrop}
                             
@@ -113,9 +123,11 @@ function HomePage() {
                                 </>
                                 
                             } />
+                            
+                            
 
-                            <FileList />
-
+                            
+                        }
 
 
                         </div>

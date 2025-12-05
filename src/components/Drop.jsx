@@ -6,10 +6,14 @@ function Dropzone({textElement, onDrop}) {
    
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
 
+    let name  = "Ahmed"
+
     return (
         <div className='drop-zone'    {...getRootProps()}>
             <input {...getInputProps()} />
 
+
+          
             <div>
                  {textElement}
             </div>

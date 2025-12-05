@@ -3,16 +3,28 @@ import "./stylec.scss"
 import Dropzone from "./Drop.jsx";
 import { GoPlus } from "react-icons/go";
 
-function FileList() {
+function FileList({ files, onDrop }) {
+
 
     return (
         <div className="File-list">
+
+
+
+            {files.map((v, i) => (
+                <div key={i}>
+                    <CiFileOn />
+                    <span>index.html</span>
+                </div>
+            ))
+            }
+
+
+
+
+
             <div>
-                <CiFileOn />
-                <span>index.html</span>
-            </div>
-            <div>
-                <Dropzone textElement={
+                <Dropzone onDrop={onDrop} textElement={
 
                     <span className="add-more-files">
                         <GoPlus />
