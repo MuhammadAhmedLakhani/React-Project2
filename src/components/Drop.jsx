@@ -2,13 +2,8 @@ import React, { useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
 import "./stylec.scss"
 
-function Dropzone({textElement}) {
-    const onDrop = acceptedFiles => {
-
-        // Do something with the files
-        console.log("Aceepted Files", acceptedFiles)
-
-    }
+function Dropzone({textElement, onDrop}) {
+   
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
 
     return (

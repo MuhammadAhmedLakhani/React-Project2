@@ -10,7 +10,11 @@ import FILEGREY from '../../assets/file-grey.svg';
 import { useState } from "react";
 import Themebutton from "../../components/Button.jsx";
 import Dropzone from "../../components/Drop.jsx"
-import FileList from  "../../components/FileList.jsx"
+import FileList from "../../components/FileList.jsx"
+import { FaDownload } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
+
+
 
 function HomePage() {
 
@@ -18,7 +22,12 @@ function HomePage() {
     let [type, settype] = useState("text");
     let [textValue, setTextValue] = useState("");
 
+ const onDrop = acceptedFiles => {
 
+        // Do something with the files
+        console.log("Aceepted Files", acceptedFiles)
+
+    }
 
     return (
 
@@ -60,30 +69,50 @@ function HomePage() {
                 <div className="card-container">
                     {type === "text" ?
 
-                        
+
                         <div className="text-section">
                             <h1>Text</h1>
                             <div className="resizeSection">
-                            <TextArea value = {textValue} onChange = {(e)=> setTextValue(e.target.value)}  />
+                                <TextArea value={textValue} onChange={(e) => setTextValue(e.target.value)} />
                             </div>
                             <div className="theme-btn-section">
                                 <span>Clear</span>
-                                <Themebutton disabled = {!textValue}  title={"Save"}/>
+                                <Themebutton disabled={!textValue} title={"Save"} />
                             </div>
                         </div>
-                        
+
 
                         :
                         <div className="file-section">
-                            <h1>Files</h1>
+                            <div className="fileHeader">
+
+                                    <h1>Files</h1>
+
+                                <div className="files-btn">
+                                    <div className="download-btn">
+                                        <FaDownload />
+                                        DownloadAll
+                                    </div>
+                                    <div className="delete-btn">
+                                        <MdDelete />
+                                        DeleteAll
+                                    </div>
+                                </div>
+
+                            </div>
 
 
-                            {/* <Dropzone textElement ={
+                            <Dropzone 
+                            
+                            onDrop={onDrop}
+                            
+                            textElement ={
+                                <>
 
-                                <> Drag and drop any files up to 2 files, 5Mbs each or  <span> Browse Upgrade </span> to get more space
+                                 Drag and drop any files up to 2 files, 5Mbs each or  <span> Browse Upgrade </span> to get more space
                                 </>
                                 
-                            } /> */}
+                            } />
 
                             <FileList />
 
