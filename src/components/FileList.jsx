@@ -33,23 +33,39 @@ function FileList({ files, onDrop }) {
                         case "text/javascript":
                             icon = <IoLogoJavascript />
                             break
+                        case "image":
+
+
                         default:
                             icon = <CiFileOn />
                     }
 
                     return (
 
-                        <div key={i}  >
 
+                        <div key={i} >
+
+                            
+                        {   
+                        type.indexOf("image") != -1 ?
+
+                            <img  width={100} height={100}  src={URL.createObjectURL(v[0])} alt="" />
+                            
+                            
+                            :
+
+                            <>
                             {icon}
 
-
-
-
                             <span className="file-name">
-                                {v[0].name.slice(0,10)}{v[0].name.slice(v[0].name.indexOf("."))} </span>
+                                {v[0].name.slice(0,10)}{v[0].name.slice(v[0].name.indexOf("."))} 
+                            </span>
 
+                            </>
+                              }
                         </div>
+
+
                         )
                 })
                 }       

@@ -94,6 +94,8 @@ $color-primary: #638eff;
 .File-list {
 
     display: flex;
+    flex-wrap: wrap;
+    gap:5px;
 
     div {
         width: 100px;
@@ -118,7 +120,9 @@ $color-primary: #638eff;
             text-align: center;
         }
 
-
+        .image-file{
+            object-fit: cover;
+        }
 
 
         .add-more-files {
@@ -141,7 +145,11 @@ $color-primary: #638eff;
                 font-size: 12px;
                 color:rgba(155, 155, 155, 0.8) ;
 
+
+
             }
+
+
         }
 
     }
