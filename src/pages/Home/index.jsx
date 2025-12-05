@@ -98,7 +98,7 @@ function HomePage() {
                                         <FaDownload />
                                         DownloadAll
                                     </div>
-                                    <div className="delete-btn">
+                                    <div onClick={()=>setFiles([])}  className="delete-btn">
                                         <MdDelete />
                                         DeleteAll
                                     </div>
