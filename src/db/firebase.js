@@ -2,7 +2,7 @@
 
 
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, set , onValue   } from "firebase/database";
+import { getDatabase, ref, set , onValue , remove   } from "firebase/database";
 
 
 const firebaseConfig = {
@@ -29,5 +29,6 @@ export {
     db,
     ref,
     set,
-    onValue 
+    onValue ,
+    remove
 }

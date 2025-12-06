@@ -22,7 +22,8 @@ import {
     db,
     ref,
     set,
-    onValue
+    onValue,
+    remove
 } from "../../db/firebase.js"
 
 
@@ -41,6 +42,9 @@ function HomePage() {
 
     let [isData, setIsData] = useState(false)
 
+    
+    
+
     const onDrop = acceptedFiles => {
 
         // Do something with the files
@@ -51,37 +55,53 @@ function HomePage() {
     }
 
     //firebase
-
+    
     //add to database
     let saveChanges = () => {
         console.log("text", textValue)
 
 
-        set(ref(db, 'sharing'), {
+        set(ref(db, 'users'), {
             text: textValue
         });
     }
-
-
+    
+    
     //read data 
 
 
 
     useEffect(() => {
 
+        console.log("running")
 
-        const starCountRef = ref(db, 'sharing');
+        const starCountRef = ref(db, 'users');
         onValue(starCountRef, (snapshot) => {
             const data = snapshot.val();
-            setTextValue(data.text);
-            setIsData(true)
+            if(data === null){
+                setTextValue("");
+                setIsData(false)
+
+            }else{
+                setTextValue(data.text)
+                setIsData(true)
+            }
         });
 
 
     }, [])
 
 
+    
+    //clear function 
+    
+    const clearText =  async ()=>{
+      await  remove(ref(db, 'users'))
 
+      setTextValue("");
+      setIsData(false)
+
+    } 
 
 
 
@@ -142,7 +162,7 @@ function HomePage() {
                                 <TextArea value={textValue} onChange={(e) => setTextValue(e.target.value)} />
                             </div>
                             <div className="theme-btn-section">
-                                <span>Clear</span>
+                                <span onClick={clearText}>Clear</span>
                                 {
                                     isData?
 
