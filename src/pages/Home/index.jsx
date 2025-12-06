@@ -159,14 +159,17 @@ function HomePage() {
                         <div className="text-section">
                             <h1>Text</h1>
                             <div className="resizeSection">
-                                <TextArea value={textValue} onChange={(e) => setTextValue(e.target.value)} />
+                                <TextArea value={textValue} onChange={(e) => {
+                                    setTextValue(e.target.value)
+                                    setIsData(false)    
+                                    }} />
                             </div>
                             <div className="theme-btn-section">
                                 <span onClick={clearText}>Clear</span>
                                 {
                                     isData?
 
-                                    <Themebutton  title={"Copy"} />
+                                    <Themebutton  title={"Copy"} onClick={()=>window.navigator.clipboard.writeText(textValue)} />
 
                                     :
                                     <Themebutton onClick={saveChanges} disabled={!textValue} title={"Save"} />
