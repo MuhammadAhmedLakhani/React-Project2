@@ -101,6 +101,8 @@ body {
 
         .resizeSection {
             flex: 1;
+            max-height: auto;
+            
         }
 
 
@@ -118,6 +120,26 @@ body {
                 cursor: pointer;
             }
         }
+        .text-footer {
+            display:flex ;
+            flex-direction: column;
+            justify-content:space-between;
+            
+            div{
+                text-align: center;
+                margin-bottom: 10px;
+                span{
+                    a{
+                        font-size: 24px;
+                        color: $color-primary;
+                    }
+                }
+            }
+
+        }
+
+        
+
 
     }
 

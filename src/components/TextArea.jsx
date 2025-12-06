@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import { useEffect, useRef } from "react"
 import "./stylec.scss"
 
 
@@ -18,6 +18,10 @@ function TextArea({ value, onChange}){
 
 
     }
+
+    useEffect(()=>{
+        changeHeight()
+    },[value])
 
 
     return (

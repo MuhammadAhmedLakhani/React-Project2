@@ -42,8 +42,8 @@ function HomePage() {
 
     let [isData, setIsData] = useState(false)
 
-    
-    
+
+
 
     const onDrop = acceptedFiles => {
 
@@ -55,7 +55,7 @@ function HomePage() {
     }
 
     //firebase
-    
+
     //add to database
     let saveChanges = () => {
         console.log("text", textValue)
@@ -65,8 +65,8 @@ function HomePage() {
             text: textValue
         });
     }
-    
-    
+
+
     //read data 
 
 
@@ -78,11 +78,11 @@ function HomePage() {
         const starCountRef = ref(db, 'users');
         onValue(starCountRef, (snapshot) => {
             const data = snapshot.val();
-            if(data === null){
+            if (data === null) {
                 setTextValue("");
                 setIsData(false)
 
-            }else{
+            } else {
                 setTextValue(data.text)
                 setIsData(true)
             }
@@ -92,26 +92,32 @@ function HomePage() {
     }, [])
 
 
-    
+
     //clear function 
-    
-    const clearText =  async ()=>{
-      await  remove(ref(db, 'users'))
 
-      setTextValue("");
-      setIsData(false)
+    const clearText = async () => {
+        await remove(ref(db, 'users'))
 
-    } 
+        setTextValue("");
+        setIsData(false)
 
-
+    }
 
 
 
 
 
+    let regex =
+        /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
 
 
 
+
+
+    let links = textValue.match(regex) || []
+
+    console.log("VALUE", textValue)
+    console.log(links)
 
 
 
@@ -161,19 +167,46 @@ function HomePage() {
                             <div className="resizeSection">
                                 <TextArea value={textValue} onChange={(e) => {
                                     setTextValue(e.target.value)
-                                    setIsData(false)    
-                                    }} />
+                                    setIsData(false)
+                                }} />
                             </div>
-                            <div className="theme-btn-section">
-                                <span onClick={clearText}>Clear</span>
-                                {
-                                    isData?
 
-                                    <Themebutton  title={"Copy"} onClick={()=>window.navigator.clipboard.writeText(textValue)} />
 
-                                    :
-                                    <Themebutton onClick={saveChanges} disabled={!textValue} title={"Save"} />
-                                }
+
+
+
+                            <div className="text-footer">
+
+
+                                <div className="theme-btn-section">
+                                    <span onClick={clearText}>Clear</span>
+                                    {
+                                        isData ?
+
+                                            <Themebutton title={"Copy"} onClick={() => window.navigator.clipboard.writeText(textValue)} />
+
+                                            :
+                                            <Themebutton onClick={saveChanges} disabled={!textValue} title={"Save"} />
+                                    }
+                                </div>
+                                <div>
+
+                                    {
+
+                                        links.map((v) => {
+                                            return (<div>
+                                                <span>
+                                                    <a href={v}>{v}</a>
+                                                </span>
+                                            </div>
+                                            )
+
+
+
+                                        })
+
+                                    }
+                                </div>
                             </div>
                         </div>
 
@@ -230,7 +263,7 @@ function HomePage() {
 
 
             </div>
-        </div>
+        </div >
     )
 
 }
