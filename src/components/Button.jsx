@@ -2,10 +2,9 @@ function Themebutton ({disabled,  title , onClick}) {
     return (
         <div>
 
-        {
-            console.log(disabled)    
-        }
-        <button  style={{borderColor :  disabled && "#9ea0a1" }} disabled = {disabled}  className="theme-btn">
+       
+        
+        <button  style={{borderColor :  disabled && "#9ea0a1" }} disabled = {disabled}  className="theme-btn" onClick={onClick} >
             {title}
         </button>
         </div>

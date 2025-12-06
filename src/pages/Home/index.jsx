@@ -15,6 +15,20 @@ import { FaDownload } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 
 
+//firebase
+
+import {
+    app,
+    db,
+    ref,
+    set
+} from "../../db/firebase.js"
+
+
+
+
+
+
 
 function HomePage() {
 
@@ -22,16 +36,44 @@ function HomePage() {
     let [type, settype] = useState("text");
     let [textValue, setTextValue] = useState("");
 
-    let[files,setFiles] = useState([])
+    let [files, setFiles] = useState([])
 
- const onDrop = acceptedFiles => {
+    const onDrop = acceptedFiles => {
 
         // Do something with the files
         console.log("Aceepted Files", acceptedFiles)
 
-        setFiles([...files,acceptedFiles])
+        setFiles([...files, acceptedFiles])
 
     }
+
+
+    let saveChanges = () => {
+        console.log("text", textValue)
+
+
+            set(ref(db, 'sharing' ), {
+                text:textValue
+            });
+        }
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
 
 
     return (
@@ -82,7 +124,7 @@ function HomePage() {
                             </div>
                             <div className="theme-btn-section">
                                 <span>Clear</span>
-                                <Themebutton disabled={!textValue} title={"Save"} />
+                                <Themebutton onClick={saveChanges} disabled={!textValue} title={"Save"} />
                             </div>
                         </div>
 
@@ -91,43 +133,43 @@ function HomePage() {
                         <div className="file-section">
                             <div className="fileHeader">
 
-                                    <h1>Files</h1>
+                                <h1>Files</h1>
 
                                 <div className="files-btn">
                                     <div className="download-btn">
                                         <FaDownload />
                                         DownloadAll
                                     </div>
-                                    <div onClick={()=>setFiles([])}  className="delete-btn">
+                                    <div onClick={() => setFiles([])} className="delete-btn">
                                         <MdDelete />
                                         DeleteAll
                                     </div>
                                 </div>
 
                             </div>
-                            
-                               {    files.length?
-                                
-                                   
-                                   <FileList files = {files} onDrop={onDrop} />
-                                   
-                                   :
-                                <  Dropzone 
-                            
-                            onDrop={onDrop}
-                            
-                            textElement ={
-                                <>
 
-                                 Drag and drop any files up to 2 files, 5Mbs each or  <span> Browse Upgrade </span> to get more space
-                                </>
-                                
-                            } />
-                            
-                            
+                            {files.length ?
 
-                            
-                        }
+
+                                <FileList files={files} onDrop={onDrop} />
+
+                                :
+                                <  Dropzone
+
+                                    onDrop={onDrop}
+
+                                    textElement={
+                                        <>
+
+                                            Drag and drop any files up to 2 files, 5Mbs each or  <span> Browse Upgrade </span> to get more space
+                                        </>
+
+                                    } />
+
+
+
+
+                            }
 
 
                         </div>
