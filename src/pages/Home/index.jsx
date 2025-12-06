@@ -7,7 +7,7 @@ import TEXTCOLOR from '../../assets/text-color.svg';
 import TEXTGREY from '../../assets/text-grey.svg';
 import FILECOLOR from '../../assets/file-color.svg';
 import FILEGREY from '../../assets/file-grey.svg';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Themebutton from "../../components/Button.jsx";
 import Dropzone from "../../components/Drop.jsx"
 import FileList from "../../components/FileList.jsx"
@@ -21,7 +21,8 @@ import {
     app,
     db,
     ref,
-    set
+    set,
+    onValue
 } from "../../db/firebase.js"
 
 
@@ -38,6 +39,8 @@ function HomePage() {
 
     let [files, setFiles] = useState([])
 
+    let [isData, setIsData] = useState(false)
+
     const onDrop = acceptedFiles => {
 
         // Do something with the files
@@ -47,15 +50,35 @@ function HomePage() {
 
     }
 
+    //firebase
 
+    //add to database
     let saveChanges = () => {
         console.log("text", textValue)
 
 
-            set(ref(db, 'sharing' ), {
-                text:textValue
-            });
-        }
+        set(ref(db, 'sharing'), {
+            text: textValue
+        });
+    }
+
+
+    //read data 
+
+
+
+    useEffect(() => {
+
+
+        const starCountRef = ref(db, 'sharing');
+        onValue(starCountRef, (snapshot) => {
+            const data = snapshot.val();
+            setTextValue(data.text);
+            setIsData(true)
+        });
+
+
+    }, [])
 
 
 
@@ -63,10 +86,6 @@ function HomePage() {
 
 
 
-
-
-
-    
 
 
 
@@ -124,7 +143,14 @@ function HomePage() {
                             </div>
                             <div className="theme-btn-section">
                                 <span>Clear</span>
-                                <Themebutton onClick={saveChanges} disabled={!textValue} title={"Save"} />
+                                {
+                                    isData?
+
+                                    <Themebutton  title={"Copy"} />
+
+                                    :
+                                    <Themebutton onClick={saveChanges} disabled={!textValue} title={"Save"} />
+                                }
                             </div>
                         </div>
 

@@ -5,7 +5,7 @@ import "./stylec.scss"
 
 
 
-function TextArea({onChange}){
+function TextArea({ value, onChange}){
 
     let textareaRef = useRef()
 
@@ -23,7 +23,7 @@ function TextArea({onChange}){
     return (
 
 
-            <textarea className="text-area" placeholder="Type Something" ref={textareaRef} onInput={()=>changeHeight()} onChange={onChange}   ></textarea>
+            <textarea className="text-area" placeholder="Type Something" ref={textareaRef} onInput={()=>changeHeight()} onChange={onChange} value={value}   ></textarea>
           
     )
 }
